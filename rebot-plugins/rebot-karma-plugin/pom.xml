@@ -103,6 +103,7 @@
 
   <build>
     <plugins>
+<!--
       <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
@@ -118,6 +119,7 @@
           </execution>
         </executions>
       </plugin>
+-->
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire-plugin.version}</version>

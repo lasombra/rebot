@@ -31,6 +31,8 @@ import javax.enterprise.inject.Alternative;
 import io.quarkus.arc.DefaultBean;
 import io.quarkus.arc.Priority;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @Alternative
 @Priority(100)
@@ -38,12 +40,32 @@ import okhttp3.OkHttpClient;
 @DefaultBean
 public class RebotOkHttpClient implements IRebotOkHttpClient {
 
+    @ConfigProperty(name = "xyz.rebasing.rebot.api.http.debug.level", defaultValue = "none")
+    String debugLevel;
+
+    HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+
     @Override
     public OkHttpClient get() {
+
+        if ("headers".equals(debugLevel)) {
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+        } else if ("body".equals(debugLevel)) {
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else if ("basic".equals(debugLevel)) {
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        } else {
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+        }
+
+        httpLoggingInterceptor.redactHeader("Authorization");
+        httpLoggingInterceptor.redactHeader("Cookie");
+
         return new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
+                .addInterceptor(httpLoggingInterceptor)
                 .build();
     }
 }

@@ -57,6 +57,9 @@ public class Startup {
 
     void onStart(@Observes StartupEvent ev) {
         log.info("ReBot is starting...");
+        log.info("ReBot is starting...");
+        log.info("ReBot is starting...");
+        log.info("ReBot is starting...");
         // Loading commands
         commands.forEach(command -> command.load());
         administrativeCommand.forEach(command -> command.load());

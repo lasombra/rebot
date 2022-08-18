@@ -45,6 +45,10 @@
       <artifactId>quarkus-container-image-jib</artifactId>
     </dependency>
     <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jackson</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-quarkus</artifactId>
     </dependency>
@@ -60,46 +64,64 @@
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-telegram-api-domain</artifactId>
     </dependency>
+<!--
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-brazil-postalcode-plugin</artifactId>
     </dependency>
+-->
+<!--
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-chuck-norris-plugin</artifactId>
     </dependency>
+-->
+<!--
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-currency-plugin</artifactId>
     </dependency>
+-->
+<!--
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-faq-plugin</artifactId>
     </dependency>
+-->
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-karma-plugin</artifactId>
     </dependency>
     <dependency>
       <groupId>xyz.rebasing</groupId>
+      <artifactId>rebot-notion-plugin</artifactId>
+    </dependency>
+<!--
+    <dependency>
+      <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-packt-free-learning-plugin</artifactId>
     </dependency>
+-->
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-ping-plugin</artifactId>
     </dependency>
+<!--
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-sed-plugin</artifactId>
     </dependency>
+-->
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-uptime-plugin</artifactId>
     </dependency>
+<!--
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-urban-dictionary-plugin</artifactId>
     </dependency>
+-->
     <dependency>
       <groupId>xyz.rebasing</groupId>
       <artifactId>rebot-weather-plugin</artifactId>
@@ -111,6 +133,21 @@
   </dependencies>
   <build>
     <plugins>
+      <plugin>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>${io.quarkus.version}</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+              <goal>generate-code</goal>
+              <goal>generate-code-tests</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${version.surefire.plugin}</version>

@@ -1,7 +1,7 @@
 /*
  *   The MIT License (MIT)
  *
- *   Copyright (c) 2017 Rebasing.xyz ReBot 
+ *   Copyright (c) 2017 Rebasing.xyz ReBot
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of
  *   this software and associated documentation files (the "Software"), to deal in
@@ -24,6 +24,7 @@
 package xyz.rebasing.rebot;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 
 import xyz.rebasing.rebot.api.domain.MessageUpdate;
@@ -31,6 +32,7 @@ import xyz.rebasing.rebot.telegram.api.message.IncomeMessageProcessor;
 import xyz.rebasing.rebot.telegram.api.polling.ReBotLongPoolingBot;
 
 @ApplicationScoped
+@Default
 public class ReBot implements ReBotLongPoolingBot {
 
     @Inject
